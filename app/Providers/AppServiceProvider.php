@@ -7,6 +7,8 @@ use App\Models\Article as ArticleModel;
 use App\Http\Resources\Article as ArticleResource;
 use App\Repositories\Article as ArticleRepository;
 use App\Contracts\Repository\Article as ArticleRepositoryContract;
+use App\Contracts\Service\SynchronizeArticle as SynchronizeArticleServiceContract;
+use App\Services\SynchronizeArticleExternal as SynchronizeArticleExternalService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ArticleRepositoryContract::class, function () {
             return new ArticleRepository(new ArticleModel, new ArticleResource(collect()));
         });
+        $this->app->singleton(SynchronizeArticleServiceContract::class, SynchronizeArticleExternalService::class);
     }
 
     /**
