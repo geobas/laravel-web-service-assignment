@@ -20,3 +20,5 @@ Route::apiResources([
     'articles' => ArticleController::class,
     'comments' => CommentController::class
 ]);
+
+Route::get('/articles/send/all', [ArticleController::class, 'sendAll'])->name('articles.send.all');
