@@ -40,7 +40,7 @@ class ArticleController extends Controller
     {
         try {
             return response()->api(
-                $this->repository->index($request)->resource
+                $this->repository->index()->resource
             , Status::OK);
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
@@ -63,7 +63,7 @@ class ArticleController extends Controller
         DB::beginTransaction();
 
         try {
-            $article = $this->repository->store($request);
+            $article = $this->repository->store();
 
             $response = $this->syncArticleService->create($article);
 
