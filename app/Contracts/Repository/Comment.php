@@ -16,7 +16,7 @@ interface Comment
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function index(): AnonymousResourceCollection;
 
@@ -25,7 +25,7 @@ interface Comment
      *
      * @return \App\Http\Resources\Comment
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function store(): CommentResource;
 
@@ -43,7 +43,7 @@ interface Comment
      * @param  \App\Models\Comment  $comment
      * @return \App\Http\Resources\Comment
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function update(CommentModel $comment): CommentResource;
 
@@ -53,7 +53,7 @@ interface Comment
      * @param  \App\Models\Comment  $comment
      * @return \App\Http\Resources\Comment
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function destroy(CommentModel $comment): CommentResource;
 }

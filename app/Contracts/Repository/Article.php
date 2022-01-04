@@ -16,7 +16,7 @@ interface Article
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function index(): AnonymousResourceCollection;
 
@@ -25,7 +25,7 @@ interface Article
      *
      * @return \App\Http\Resources\Article
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function store(): ArticleResource;
 
@@ -43,7 +43,7 @@ interface Article
      * @param  \App\Models\Article  $article
      * @return \App\Http\Resources\Article
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function update(ArticleModel $article): ArticleResource;
 
@@ -53,7 +53,7 @@ interface Article
      * @param  \App\Models\Article  $article
      * @return \App\Http\Resources\Article
      *
-     * @throws App\Exceptions\CrudException
+     * @throws \App\Exceptions\CrudException
      */
     public function destroy(ArticleModel $article): ArticleResource;
 }
