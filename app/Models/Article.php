@@ -22,6 +22,18 @@ class Article extends Model
     ];
 
     /**
+     * Save UUID when creating model.
+     * 
+     * @return void
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(fn($model) => $model->uuid = Str::uuid()->toString());
+    }
+
+    /**
      * An Article has many Comments.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
