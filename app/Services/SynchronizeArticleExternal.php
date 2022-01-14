@@ -14,20 +14,6 @@ use App\Contracts\Service\SynchronizeArticle as SynchronizeArticleServiceContrac
 class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
 {
     /**
-     * Base url of external service.
-     *
-     * @var string
-     */
-    const BASE_URL = 'https://lapi.external-services.com/v2/';
-
-    /**
-     * Bearer token.
-     *
-     * @var string
-     */
-    const TOKEN = 'my-unique_token-12';
-
-    /**
      * Take elements up to the specified position.
      *
      * @var int
@@ -45,7 +31,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
      * Create a new service instance.
      */
     public function __construct() {
-        $this->client = Http::fake()->accept('application/vnd.api+json')->withToken(self::TOKEN);
+        $this->client = Http::fake()->accept('application/vnd.api+json')->withToken(config('services.external.token'));
     }
 
     public function sendAll(): bool
@@ -68,15 +54,9 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
     public function create(ArticleResource $article): bool
     {
         return $this->client
-                    ->post(self::BASE_URL . 'articles', [
+                    ->post(config('services.external.base_url') . 'articles', [
                         'type' => 'article',
-                        'attributes' => [
-                            'title' => $article->title,
-                            'content' => $article->content,
-                            'category' => $article->category,
-                            'date' => Carbon::createFromDate($article->created_at)->format('d-m-Y H:i:s'),
-                            'uuid' => $article->uuid,
-                        ]
+                        'attributes' => $this->buildAttributesPaylod($article),
                     ])
                     ->successful();
     }
@@ -84,16 +64,10 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
     public function update(ArticleResource $article): bool
     {
         return $this->client
-                    ->put(self::BASE_URL . "articles/{$article->id}", [
+                    ->put(config('services.external.base_url') . "articles/{$article->id}", [
                         'id' => $article->id,
                         'type' => 'article',
-                        'attributes' => [
-                            'title' => $article->title,
-                            'content' => $article->content,
-                            'category' => $article->category,
-                            'date' => Carbon::createFromDate($article->created_at)->format('d-m-Y H:i:s'),
-                            'uuid' => $article->uuid,
-                        ]
+                        'attributes' => $this->buildAttributesPaylod($article),
                     ])
                     ->successful();
     }
@@ -101,7 +75,24 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
     public function delete(ArticleResource $article): bool
     {
         return $this->client
-                    ->delete(self::BASE_URL . "articles/{$article->id}")
+                    ->delete(config('services.external.base_url') . "articles/{$article->id}")
                     ->successful();
+    }
+
+    /**
+     * Build common payload of 'attributes' key.
+     * 
+     * @param  ArticleResource  $article
+     * @return array
+     */
+    private function buildAttributesPaylod(ArticleResource $article): array
+    {
+        return [
+            'title' => $article->title,
+            'content' => $article->content,
+            'category' => $article->category,
+            'date' => Carbon::createFromDate($article->created_at)->format('d-m-Y H:i:s'),
+            'uuid' => $article->uuid,
+        ];
     }
 }

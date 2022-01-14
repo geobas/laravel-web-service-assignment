@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'external' => [
+        'base_url' => env('BASE_URL_EXTERNAL_SERVICE'),
+        'token' => env('TOKEN_EXTERNAL_SERVICE'),
+    ],
+
 ];
