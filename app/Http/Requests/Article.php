@@ -38,7 +38,7 @@ class Article extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => ':attribute is required',
+            // 'title.required' => ':attribute is required',
             'title.string' => ':attribute must be a string',
             'title.max' => ':attribute is too big',
             'content.required' => ':attribute is required',

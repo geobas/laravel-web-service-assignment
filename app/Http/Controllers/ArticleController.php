@@ -25,6 +25,9 @@ class ArticleController extends Controller
     public function __construct(
         protected ArticleServiceContract $service,
         protected SynchronizeArticleServiceContract $syncArticleService,
+    ) {
+        // App::setLocale('el');
+    }
 
     /**
      * Display a listing of the resource.
