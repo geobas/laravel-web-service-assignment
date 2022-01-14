@@ -3,7 +3,7 @@
 namespace App\Contracts\Repository;
 
 use App\Models\Article as ArticleModel;
-use App\Http\Resources\Article as ArticleResource;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
@@ -14,46 +14,48 @@ interface Article
     /**
      * Get all Articles.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return \Illuminate\Pagination\Paginator
      *
      * @throws \App\Exceptions\CrudException
      */
-    public function index(): AnonymousResourceCollection;
+    public function index(): Paginator;
 
     /**
      * Save a new Article.
      *
-     * @return \App\Http\Resources\Article
+     * @param  array  $data
+     * @return \App\Models\Article
      *
      * @throws \App\Exceptions\CrudException
      */
-    public function store(): ArticleResource;
+    public function store(array $data): ArticleModel;
 
     /**
      * Get one Article.
      *
      * @param  \App\Models\Article  $article
-     * @return \App\Http\Resources\Article
+     * @return \App\Models\Article
      */
-    public function show(ArticleModel $article): ArticleResource;
+    public function show(ArticleModel $article): ArticleModel;
 
     /**
      * Edit an Article.
      *
      * @param  \App\Models\Article  $article
-     * @return \App\Http\Resources\Article
+     * @param  array  $data
+     * @return \App\Models\Article
      *
      * @throws \App\Exceptions\CrudException
      */
-    public function update(ArticleModel $article): ArticleResource;
+    public function update(ArticleModel $article, array $data): ArticleModel;
 
     /**
      * Delete an Article.
      *
      * @param  \App\Models\Article  $article
-     * @return \App\Http\Resources\Article
+     * @return \App\Models\Article
      *
      * @throws \App\Exceptions\CrudException
      */
-    public function destroy(ArticleModel $article): ArticleResource;
+    public function destroy(ArticleModel $article): ArticleModel;
 }

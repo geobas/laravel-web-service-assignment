@@ -5,8 +5,7 @@ namespace App\Repositories;
 use App\Exceptions\CrudException;
 use App\Models\Article as ArticleModel;
 use Illuminate\Database\QueryException;
-use App\Http\Resources\Article as ArticleResource;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Pagination\Paginator;
 use App\Contracts\Repository\Article as ArticleRepositoryContract;
 
 class Article implements ArticleRepositoryContract
@@ -22,51 +21,49 @@ class Article implements ArticleRepositoryContract
      * Create a new repository instance.
      *
      * @param \App\Models\Article  $model
-     * @param \App\Http\Resources\Article  $resource
      */
     public function __construct(
         protected ArticleModel $model,
-        protected ArticleResource $resource,
     ) {}
 
-    public function index(): AnonymousResourceCollection
+    public function index(): Paginator
     {
         try {
-            return $this->resource->collection($this->model->simplePaginate(self::ITEMS_PER_PAGE));
+            return $this->model->simplePaginate(self::ITEMS_PER_PAGE);
         } catch (QueryException $e) {
             throw new CrudException($e->getMessage());
         }
     }
 
-    public function store(): ArticleResource
-    {
-        try {            
-            return $this->resource->make($this->model->create(request()->all()));
-        } catch (QueryException $e) {
-            throw new CrudException($e->getMessage());
-        }
-    }
-
-    public function show(ArticleModel $article): ArticleResource
-    {
-        return $this->resource->make($article);
-    }
-
-    public function update(ArticleModel $article): ArticleResource
+    public function store(array $data): ArticleModel
     {
         try {
-            return $this->resource->make(tap($article)->update(request()->all()));
+           return $this->model->create($data);
         } catch (QueryException $e) {
             throw new CrudException($e->getMessage());
         }
     }
 
-    public function destroy(ArticleModel $article): ArticleResource
+    public function show(ArticleModel $article): ArticleModel
+    {
+        return $article;
+    }
+
+    public function update(ArticleModel $article, array $data): ArticleModel
+    {
+        try {
+            return tap($article)->update($data);
+        } catch (QueryException $e) {
+            throw new CrudException($e->getMessage());
+        }
+    }
+
+    public function destroy(ArticleModel $article): ArticleModel
     {        
-        try {                        
-            return $this->resource->make(tap($article)->delete());
+        try {
+            return tap($article)->delete();
         } catch (QueryException $e) {
             throw new CrudException($e->getMessage());
-        }        
+        }
     }
 }
