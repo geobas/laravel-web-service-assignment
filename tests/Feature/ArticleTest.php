@@ -29,7 +29,7 @@ class ArticleTest extends TestCase
      */
     public function get_all_articles()
     {
-        $this->getJson('api/articles')
+        $this->getJson('api/v1/articles')
              ->assertStatus(Status::OK)
              ->assertJsonStructure([
                 'data' => [
@@ -51,7 +51,7 @@ class ArticleTest extends TestCase
      */
     public function get_one_article()
     {
-        $this->getJson('api/articles/1')
+        $this->getJson('api/v1/articles/1')
              ->assertStatus(Status::OK)
              ->assertJsonStructure([
                 'data' => [
@@ -71,7 +71,7 @@ class ArticleTest extends TestCase
      */
     public function create_one_article()
     {
-        $this->postJson('api/articles', [
+        $this->postJson('api/v1/articles', [
                 'title' => 'Nulla voluptatibus esse quibusdam id omnis.',
                 'content' => 'Fusce euismod ullamcorper mi, vel volutpat felis maximus in. Proin ornare pharetra convallis. Quisque ultricies libero eu eros tempus ornare quis quis nisi. Phasellus id ante a lorem pharetra egestas ullamcorper vitae tellus.',
                 'category' => 'General'
@@ -95,7 +95,7 @@ class ArticleTest extends TestCase
                 ]
              ]);
 
-        $this->postJson('api/articles')
+        $this->postJson('api/v1/articles')
              ->assertStatus(Status::BAD_REQUEST)
              ->assertJson([
                 'errors' => [
@@ -114,7 +114,7 @@ class ArticleTest extends TestCase
      */
     public function update_one_article()
     {
-        $this->putJson('api/articles/1', [
+        $this->putJson('api/v1/articles/1', [
                 'title' => 'Lorem ipsum',
                 'content' => 'Occaecati voluptas ipsum nesciunt. Provident quo magnam similique fuga quibusdam. Consectetur aperiam ea quas ad est.',
                 'category' => 'Nature'
@@ -144,7 +144,7 @@ class ArticleTest extends TestCase
      */
     public function delete_one_article()
     {
-        $this->deleteJson('api/articles/1')
+        $this->deleteJson('api/v1/articles/1')
              ->assertStatus(Status::OK)
              ->assertJsonStructure([
                 'data' => [

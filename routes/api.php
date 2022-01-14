@@ -16,9 +16,11 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::apiResources([
-    'articles' => ArticleController::class,
-    'comments' => CommentController::class
-]);
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResources([
+        'articles' => ArticleController::class,
+        'comments' => CommentController::class
+    ]);
 
-Route::get('/articles/send/all', [ArticleController::class, 'sendAll'])->name('articles.send.all');
+    Route::get('/articles/send/all', [ArticleController::class, 'sendAll'])->name('articles.send.all');
+});
