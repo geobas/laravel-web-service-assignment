@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Article extends JsonResource
@@ -21,7 +20,7 @@ class Article extends JsonResource
             'content' => $this->content,
             'category' => $this->category,
             'uuid' => $this->uuid,
-            'creation_date' => Carbon::createFromDate($this->created_at)->format('d-m-Y H:i:s'),
+            'creation_date' => $this->created_at->format('d-m-Y H:i:s'),
             'comments' => $this->when(
                 $this->comments->isNotEmpty(),
                 $this->comments->map(fn($comment) => $comment->only(['content', 'owner']))

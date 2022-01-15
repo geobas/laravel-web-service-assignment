@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
 use App\Models\Article;
 use Illuminate\Support\Facades\Http;
 use App\Http\Resources\Article as ArticleResource;
@@ -91,7 +90,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
             'title' => $article->title,
             'content' => $article->content,
             'category' => $article->category,
-            'date' => Carbon::createFromDate($article->created_at)->format('d-m-Y H:i:s'),
+            'date' => $article->created_at->format('d-m-Y H:i:s'),
             'uuid' => $article->uuid,
         ];
     }
