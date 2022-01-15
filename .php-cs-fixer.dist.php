@@ -145,6 +145,9 @@ $finder = Finder::create()
     ->exclude($excludes)
     ->notName('*.xml')
     ->notName('*.yml')
+    ->notPath('tests/Feature/ExampleTest.php')
+    ->notPath('app/Providers/AuthServiceProvider.php')
+    ->notPath('app/Models/User.php')
     ->in(__DIR__);
 
 return (new Config)
