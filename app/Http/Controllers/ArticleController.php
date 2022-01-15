@@ -34,7 +34,7 @@ class ArticleController extends Controller
      *
      * @uses   \App\Providers\ResponseServiceProvider
      *
-     * @param  \Illuminate\Http\Request;
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)

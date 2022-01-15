@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Throwable;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Helpers\HttpStatus as Status;
 use App\Http\Requests\Comment as CommentRequest;
 use App\Contracts\Repository\Comment as CommentRepositoryContract;
@@ -29,10 +30,10 @@ class CommentController extends Controller
      *
      * @uses   \App\Providers\ResponseServiceProvider
      *
-     * @param  \Illuminate\Http\Request;
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         try {
             return response()->api(
@@ -52,7 +53,7 @@ class CommentController extends Controller
      * @param  \App\Http\Requests\Comment  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CommentRequest $request)
+    public function store(CommentRequest $request): JsonResponse
     {
         try {
             return response()->api([
