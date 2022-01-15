@@ -29,7 +29,8 @@ class Article implements ArticleServiceContract
         protected ArticleRepositoryContract $repository,
         protected ArticleResource $resource,
         protected SynchronizeArticleServiceContract $syncArticleService,
-    ) {}
+    ) {
+    }
 
     public function index(): AnonymousResourceCollection
     {
@@ -61,7 +62,7 @@ class Article implements ArticleServiceContract
             if (!$response) {
                 throw new ExternalServiceException('Article synchronization error.');
             }
-            
+
             DB::commit();
 
             return $article;
@@ -128,7 +129,7 @@ class Article implements ArticleServiceContract
      */
     protected function logErrorAndThrow(Throwable $t): void
     {
-        Log::error("'" . $t->getMessage() . "' - File: '" . $t->getFile() . "' - Method: '" 
+        Log::error("'" . $t->getMessage() . "' - File: '" . $t->getFile() . "' - Method: '"
             . debug_backtrace()[1]['function'] . "' at line: " . $t->getLine());
 
         throw $t;

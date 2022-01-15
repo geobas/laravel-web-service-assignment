@@ -21,7 +21,8 @@ class CommentController extends Controller
      */
     public function __construct(
         protected CommentRepositoryContract $repository,
-    ) {}
+    ) {
+    }
 
     /**
      * Display a listing of the resource.
@@ -35,8 +36,9 @@ class CommentController extends Controller
     {
         try {
             return response()->api(
-                $this->repository->index()->resource
-            , Status::OK);
+                $this->repository->index()->resource,
+                Status::OK
+            );
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
         }
@@ -46,7 +48,7 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @param  \App\Http\Requests\Comment  $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -54,7 +56,7 @@ class CommentController extends Controller
     {
         try {
             return response()->api([
-                'data' => $this->repository->store()
+                'data' => $this->repository->store(),
             ], Status::CREATED);
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
@@ -65,7 +67,7 @@ class CommentController extends Controller
      * Display the specified resource.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\JsonResponse
      */
@@ -73,11 +75,11 @@ class CommentController extends Controller
     {
         try {
             return response()->api([
-                'data' => $this->repository->show($comment)
+                'data' => $this->repository->show($comment),
             ], Status::OK);
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
-        }       
+        }
     }
 
     /**
@@ -93,18 +95,18 @@ class CommentController extends Controller
     {
         try {
             return response()->api([
-                'data' => $this->repository->update($comment)
+                'data' => $this->repository->update($comment),
             ], Status::OK);
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
-        }  
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\JsonResponse
      */
@@ -112,7 +114,7 @@ class CommentController extends Controller
     {
         try {
             return response()->api([
-                'data' => $this->repository->destroy($comment)
+                'data' => $this->repository->destroy($comment),
             ], Status::OK);
         } catch (Throwable $t) {
             $this->logError($t);

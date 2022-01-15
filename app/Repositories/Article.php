@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use App\Exceptions\CrudException;
+use Illuminate\Pagination\Paginator;
 use App\Models\Article as ArticleModel;
 use Illuminate\Database\QueryException;
-use Illuminate\Pagination\Paginator;
 use App\Contracts\Repository\Article as ArticleRepositoryContract;
 
 class Article implements ArticleRepositoryContract
@@ -24,7 +24,8 @@ class Article implements ArticleRepositoryContract
      */
     public function __construct(
         protected ArticleModel $model,
-    ) {}
+    ) {
+    }
 
     public function index(): Paginator
     {
@@ -38,7 +39,7 @@ class Article implements ArticleRepositoryContract
     public function store(array $data): ArticleModel
     {
         try {
-           return $this->model->create($data);
+            return $this->model->create($data);
         } catch (QueryException $e) {
             throw new CrudException($e->getMessage());
         }
@@ -59,7 +60,7 @@ class Article implements ArticleRepositoryContract
     }
 
     public function destroy(ArticleModel $article): ArticleModel
-    {        
+    {
         try {
             return tap($article)->delete();
         } catch (QueryException $e) {

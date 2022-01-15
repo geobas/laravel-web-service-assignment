@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Models\Article as ArticleModel;
 use App\Models\Comment as CommentModel;
+use Illuminate\Support\ServiceProvider;
 use App\Services\Article as ArticleService;
 use App\Http\Resources\Article as ArticleResource;
 use App\Http\Resources\Comment as CommentResource;
@@ -12,8 +12,8 @@ use App\Repositories\Article as ArticleRepository;
 use App\Repositories\Comment as CommentRepository;
 use App\Contracts\Service\Article as ArticleServiceContract;
 use App\Contracts\Repository\Comment as CommentRepositoryContract;
-use App\Contracts\Service\SynchronizeArticle as SynchronizeArticleServiceContract;
 use App\Services\SynchronizeArticleExternal as SynchronizeArticleExternalService;
+use App\Contracts\Service\SynchronizeArticle as SynchronizeArticleServiceContract;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -50,5 +50,5 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-    }	
+    }
 }

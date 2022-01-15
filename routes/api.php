@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
@@ -16,10 +15,10 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::group(['prefix' => 'v1'], function() {
+Route::group(['prefix' => 'v1'], function () {
     Route::apiResources([
         'articles' => ArticleController::class,
-        'comments' => CommentController::class
+        'comments' => CommentController::class,
     ]);
 
     Route::get('/articles/send/all', [ArticleController::class, 'sendAll'])->name('articles.send.all');

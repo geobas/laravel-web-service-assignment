@@ -13,7 +13,7 @@ interface Article
 {
     /**
      * Get all Articles.
-     *     
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @throws \Exception|\Error
@@ -37,7 +37,7 @@ interface Article
      * @return \App\Http\Resources\Article
      *
      * @throws \Exception|\Error|\App\Exceptions\ExternalService
-     */    
+     */
     public function store(array $data): ArticleResource;
 
     /**
@@ -46,7 +46,7 @@ interface Article
      * @param  \App\Models\Article  $article
      * @param  array  $data
      * @return \App\Http\Resources\Article
-     * 
+     *
      * @throws \Exception|\Error|\App\Exceptions\ExternalService
      */
     public function update(ArticleModel $article, array $data): ArticleResource;
@@ -59,5 +59,5 @@ interface Article
      *
      * @throws \Exception|\Error|\App\Exceptions\ExternalService
      */
-    public function destroy(ArticleModel $article): ArticleResource;	
+    public function destroy(ArticleModel $article): ArticleResource;
 }

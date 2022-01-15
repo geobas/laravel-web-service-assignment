@@ -11,14 +11,14 @@ interface SynchronizeArticle
 {
     /**
      * Send all existing Articles.
-     * 
+     *
      * @return bool
      */
     public function sendAll(): bool;
 
     /**
      * Send a newly created Article.
-     * 
+     *
      * @param  \App\Http\Resources\Article  $article
      * @return bool
      */
@@ -26,7 +26,7 @@ interface SynchronizeArticle
 
     /**
      * Send an updated Article.
-     * 
+     *
      * @param  \App\Http\Resources\Article  $article
      * @return bool
      */
@@ -34,9 +34,9 @@ interface SynchronizeArticle
 
     /**
      * Send a deleted Article.
-     * 
+     *
      * @param  \App\Http\Resources\Article  $article
      * @return bool
-     */    
+     */
     public function delete(ArticleResource $article): bool;
 }

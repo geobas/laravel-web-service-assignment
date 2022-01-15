@@ -13,7 +13,7 @@ class ExternalService extends BaseException
      * Render the exception into a JSON response.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function render()

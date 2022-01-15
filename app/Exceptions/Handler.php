@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Throwable  $exception
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse

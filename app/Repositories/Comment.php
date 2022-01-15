@@ -27,7 +27,8 @@ class Comment implements CommentRepositoryContract
     public function __construct(
         protected CommentModel $model,
         protected CommentResource $resource,
-    ) {}
+    ) {
+    }
 
     public function index(): AnonymousResourceCollection
     {

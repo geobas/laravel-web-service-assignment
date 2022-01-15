@@ -29,7 +29,8 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
     /**
      * Create a new service instance.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->client = Http::fake()->accept('application/vnd.api+json')->withToken(config('services.external.token'));
     }
 
@@ -38,7 +39,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
         $failed = false;
 
         Article::chunk(self::SIZE, function ($articles) use (&$failed) {
-            $articles->each(function($article) use (&$failed) {
+            $articles->each(function ($article) use (&$failed) {
                 if (!$this->create(ArticleResource::make($article))) {
                     $failed = true;
 
@@ -80,7 +81,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
 
     /**
      * Build common payload of 'attributes' key.
-     * 
+     *
      * @param  ArticleResource  $article
      * @return array
      */

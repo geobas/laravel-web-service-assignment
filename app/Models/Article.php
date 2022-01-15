@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -22,18 +22,6 @@ class Article extends Model
     ];
 
     /**
-     * Save UUID when creating model.
-     * 
-     * @return void
-     */
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(fn($model) => $model->uuid = Str::uuid()->toString());
-    }
-
-    /**
      * An Article has many Comments.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -41,5 +29,17 @@ class Article extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Save UUID when creating model.
+     *
+     * @return void
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(fn ($model) => $model->uuid = Str::uuid()->toString());
     }
 }

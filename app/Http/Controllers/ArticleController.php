@@ -7,8 +7,8 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Helpers\HttpStatus as Status;
 use App\Http\Requests\Article as ArticleRequest;
-use App\Exceptions\ExternalService as ExternalServiceException;
 use App\Contracts\Service\Article as ArticleServiceContract;
+use App\Exceptions\ExternalService as ExternalServiceException;
 use App\Contracts\Service\SynchronizeArticle as SynchronizeArticleServiceContract;
 
 /**
@@ -40,8 +40,9 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         return response()->api(
-            $this->service->index()->resource
-        , Status::OK);
+            $this->service->index()->resource,
+            Status::OK
+        );
     }
 
     /**
@@ -49,14 +50,14 @@ class ArticleController extends Controller
      * and sync it to the external service.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @param  \App\Http\Requests\Article  $request
-     * @return \Illuminate\Http\JsonResponse     
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(ArticleRequest $request)
     {
         return response()->api([
-            'data' => $this->service->store($request->validated())
+            'data' => $this->service->store($request->validated()),
         ], Status::CREATED);
     }
 
@@ -64,14 +65,14 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Article $article)
     {
         return response()->api([
-            'data' => $this->service->show($article)
+            'data' => $this->service->show($article),
         ], Status::OK);
     }
 
@@ -86,9 +87,9 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(ArticleRequest $request, Article $article)
-    {    
+    {
         return response()->api([
-            'data' => $this->service->update($article, $request->validated())
+            'data' => $this->service->update($article, $request->validated()),
         ], Status::OK);
     }
 
@@ -97,20 +98,20 @@ class ArticleController extends Controller
      * and sync it to the external service.
      *
      * @uses   \App\Providers\ResponseServiceProvider
-     * 
+     *
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Article $article)
     {
         return response()->api([
-            'data' =>  $this->service->destroy($article)
+            'data' => $this->service->destroy($article),
         ], Status::OK);
     }
 
     /**
      * Send all existing Articles to the external service.
-     * 
+     *
      * @return \Illuminate\Http\JsonResponse
      *
      * @throws \App\Exceptions\ExternalService
@@ -124,7 +125,7 @@ class ArticleController extends Controller
         }
 
         return response()->api([
-            'message' => 'All Articles were synchronized.'
+            'message' => 'All Articles were synchronized.',
         ], Status::OK);
     }
 }

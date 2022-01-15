@@ -2,9 +2,8 @@
 
 namespace App\Contracts\Repository;
 
-use App\Models\Article as ArticleModel;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Models\Article as ArticleModel;
 
 /**
  * Specify a set of repository methods for Article retrieval & persistence.

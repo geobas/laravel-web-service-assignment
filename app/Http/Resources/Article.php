@@ -23,7 +23,7 @@ class Article extends JsonResource
             'creation_date' => $this->created_at->format('d-m-Y H:i:s'),
             'comments' => $this->when(
                 $this->comments->isNotEmpty(),
-                $this->comments->map(fn($comment) => $comment->only(['content', 'owner']))
+                $this->comments->map(fn ($comment) => $comment->only(['content', 'owner']))
             ),
         ];
     }

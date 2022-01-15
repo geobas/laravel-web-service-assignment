@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Helpers\HttpStatus as Status;
 use Tests\TestCase;
+use App\Helpers\HttpStatus as Status;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ArticleTest extends TestCase
 {
@@ -41,8 +41,8 @@ class ArticleTest extends TestCase
                         'uuid',
                         'creation_date',
                         'comments',
-                    ]
-                ]
+                    ],
+                ],
              ]);
     }
 
@@ -62,7 +62,7 @@ class ArticleTest extends TestCase
                     'uuid',
                     'creation_date',
                     'comments',
-                ]
+                ],
              ]);
     }
 
@@ -74,7 +74,7 @@ class ArticleTest extends TestCase
         $this->postJson('api/v1/articles', [
                 'title' => 'Nulla voluptatibus esse quibusdam id omnis.',
                 'content' => 'Fusce euismod ullamcorper mi, vel volutpat felis maximus in. Proin ornare pharetra convallis. Quisque ultricies libero eu eros tempus ornare quis quis nisi. Phasellus id ante a lorem pharetra egestas ullamcorper vitae tellus.',
-                'category' => 'General'
+                'category' => 'General',
              ])
              ->assertStatus(Status::CREATED)
              ->assertJsonStructure([
@@ -85,14 +85,14 @@ class ArticleTest extends TestCase
                     'category',
                     'uuid',
                     'creation_date',
-                ]
+                ],
              ])
              ->assertJson([
                 'data' => [
                     'title' => 'Nulla voluptatibus esse quibusdam id omnis.',
                     'content' => 'Fusce euismod ullamcorper mi, vel volutpat felis maximus in. Proin ornare pharetra convallis. Quisque ultricies libero eu eros tempus ornare quis quis nisi. Phasellus id ante a lorem pharetra egestas ullamcorper vitae tellus.',
                     'category' => 'General',
-                ]
+                ],
              ]);
 
         $this->postJson('api/v1/articles')
@@ -100,12 +100,12 @@ class ArticleTest extends TestCase
              ->assertJson([
                 'errors' => [
                     'title' => [
-                        'title is required' 
-                    ], 
+                        'title is required',
+                    ],
                     'content' => [
-                        'content is required' 
-                    ] 
-                ]
+                        'content is required',
+                    ],
+                ],
              ]);
     }
 
@@ -117,7 +117,7 @@ class ArticleTest extends TestCase
         $this->putJson('api/v1/articles/1', [
                 'title' => 'Lorem ipsum',
                 'content' => 'Occaecati voluptas ipsum nesciunt. Provident quo magnam similique fuga quibusdam. Consectetur aperiam ea quas ad est.',
-                'category' => 'Nature'
+                'category' => 'Nature',
              ])
              ->assertStatus(Status::OK)
              ->assertJsonStructure([
@@ -128,14 +128,14 @@ class ArticleTest extends TestCase
                     'category',
                     'uuid',
                     'creation_date',
-                ]
+                ],
              ])
              ->assertJson([
                 'data' => [
                     'title' => 'Lorem ipsum',
                     'content' => 'Occaecati voluptas ipsum nesciunt. Provident quo magnam similique fuga quibusdam. Consectetur aperiam ea quas ad est.',
                     'category' => 'Nature',
-                ]
+                ],
              ]);
     }
 
@@ -154,7 +154,7 @@ class ArticleTest extends TestCase
                     'category',
                     'uuid',
                     'creation_date',
-                ]
+                ],
              ]);
     }
 }

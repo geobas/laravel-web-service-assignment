@@ -14,8 +14,8 @@ $rules = [
     'binary_operator_spaces' => [
         'operators' => [
             '=>' => 'single_space',
+            // '=' => 'single_space',
             '===' => 'align_single_space_minimal',
-            '|' => 'no_space',
         ],
     ],
     'blank_line_after_namespace' => true,
@@ -32,7 +32,6 @@ $rules = [
     ],
     'class_attributes_separation' => [
         'elements' => [
-            'const' => 'one',
             'method' => 'one',
             'property' => 'one',
             'trait_import' => 'none',
