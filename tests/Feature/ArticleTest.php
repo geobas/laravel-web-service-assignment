@@ -100,7 +100,7 @@ class ArticleTest extends TestCase
              ->assertJson([
                 'errors' => [
                     'title' => [
-                        'title is required',
+                        'The title field is required.',
                     ],
                     'content' => [
                         'content is required',
