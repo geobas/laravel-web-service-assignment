@@ -15,4 +15,3 @@ yarn-error.log
 /.vscode
 !.docker/mysql/.env
 .php-cs-fixer.cache
-storage/debugbar/.gitignore
