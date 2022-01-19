@@ -31,7 +31,10 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
      */
     public function __construct()
     {
-        $this->client = Http::fake()->accept('application/vnd.api+json')->withToken(config('services.external.token'));
+        $this->client = Http::fake()
+                            ->timeout(3)
+                            ->accept('application/vnd.api+json')
+                            ->withToken(config('services.external.token'));
     }
 
     public function sendAll(): bool
@@ -58,6 +61,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
                         'type' => 'article',
                         'attributes' => $this->buildAttributesPaylod($article),
                     ])
+                    ->throw()
                     ->successful();
     }
 
@@ -69,6 +73,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
                         'type' => 'article',
                         'attributes' => $this->buildAttributesPaylod($article),
                     ])
+                    ->throw()
                     ->successful();
     }
 
@@ -76,6 +81,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
     {
         return $this->client
                     ->delete(config('services.external.base_url') . "articles/{$article->id}")
+                    ->throw()
                     ->successful();
     }
 

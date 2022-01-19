@@ -31,7 +31,7 @@ class Article implements ArticleRepositoryContract
     {
         try {
             return $this->model
-                        ->with(['comments' => fn ($query) => $query->select(['id', 'article_id', 'content', 'owner'])])
+                        ->with(['comments:id,article_id,content,owner'])
                         ->simplePaginate(self::ITEMS_PER_PAGE, ['id', 'title', 'content', 'category', 'uuid', 'created_at']);
         } catch (QueryException $e) {
             throw new CrudException($e->getMessage());
