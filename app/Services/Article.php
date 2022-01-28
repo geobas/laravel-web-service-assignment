@@ -32,25 +32,29 @@ class Article implements ArticleServiceContract
     ) {
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection|bool
     {
         try {
             return $this->resource->collection($this->repository->index());
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
-    public function show(ArticleModel $article): ArticleResource
+    public function show(ArticleModel $article): ArticleResource|bool
     {
         try {
             return $this->resource->make($this->repository->show($article));
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
-    public function store(array $data): ArticleResource
+    public function store(array $data): ArticleResource|bool
     {
         DB::beginTransaction();
 
@@ -70,10 +74,12 @@ class Article implements ArticleServiceContract
             DB::rollback();
 
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
-    public function update(ArticleModel $article, array $data): ArticleResource
+    public function update(ArticleModel $article, array $data): ArticleResource|bool
     {
         DB::beginTransaction();
 
@@ -93,10 +99,12 @@ class Article implements ArticleServiceContract
             DB::rollback();
 
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
-    public function destroy(ArticleModel $article): ArticleResource
+    public function destroy(ArticleModel $article): ArticleResource|bool
     {
         DB::beginTransaction();
 
@@ -116,6 +124,8 @@ class Article implements ArticleServiceContract
             DB::rollback();
 
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use Throwable;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -31,9 +32,9 @@ class CommentController extends Controller
      * @uses   \App\Providers\ResponseServiceProvider
      *
      * @param  \Illuminate\Http\Request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|bool
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request): JsonResponse|bool
     {
         try {
             return response()->api(
@@ -42,6 +43,8 @@ class CommentController extends Controller
             );
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
@@ -51,9 +54,9 @@ class CommentController extends Controller
      * @uses   \App\Providers\ResponseServiceProvider
      *
      * @param  \App\Http\Requests\Comment  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|bool
      */
-    public function store(CommentRequest $request): JsonResponse
+    public function store(CommentRequest $request): JsonResponse|bool
     {
         try {
             return response()->api([
@@ -61,6 +64,8 @@ class CommentController extends Controller
             ], Status::CREATED);
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
@@ -70,9 +75,9 @@ class CommentController extends Controller
      * @uses   \App\Providers\ResponseServiceProvider
      *
      * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|bool
      */
-    public function show(Comment $comment)
+    public function show(Comment $comment): JsonResponse|bool
     {
         try {
             return response()->api([
@@ -80,6 +85,8 @@ class CommentController extends Controller
             ], Status::OK);
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
@@ -90,9 +97,9 @@ class CommentController extends Controller
      *
      * @param  \App\Http\Requests\Comment  $request
      * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|bool
      */
-    public function update(CommentRequest $request, Comment $comment)
+    public function update(CommentRequest $request, Comment $comment): JsonResponse|bool
     {
         try {
             return response()->api([
@@ -100,6 +107,8 @@ class CommentController extends Controller
             ], Status::OK);
         } catch (Throwable $t) {
             $this->logErrorAndThrow($t);
+
+            return true;
         }
     }
 
@@ -109,16 +118,34 @@ class CommentController extends Controller
      * @uses   \App\Providers\ResponseServiceProvider
      *
      * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|bool
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment): JsonResponse|bool
     {
         try {
             return response()->api([
                 'data' => $this->repository->destroy($comment),
             ], Status::OK);
         } catch (Throwable $t) {
-            $this->logError($t);
+            $this->logErrorAndThrow($t);
+
+            return true;
         }
+    }
+
+    /**
+     * Log error.
+     *
+     * @param  Throwable  $t
+     * @return void
+     *
+     * @throws \Exception|\Error
+     */
+    protected function logErrorAndThrow(Throwable $t): void
+    {
+        Log::error("'" . $t->getMessage() . "' - File: '" . $t->getFile() . "' - Method: '"
+            . debug_backtrace()[1]['function'] . "' at line: " . $t->getLine());
+
+        throw $t;
     }
 }
