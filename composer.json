@@ -57,6 +57,11 @@
         ],
         "larastan": [
             "vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
+        "run-all": [
+            "@phpcsfixer",
+            "@larastan",
+            "@test"
         ]
     },
     "extra": {
