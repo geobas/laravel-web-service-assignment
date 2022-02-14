@@ -26,3 +26,10 @@ parameters:
         - app/Exceptions/Handler.php
 
     checkMissingIterableValueType: false
+
+    reportStaticMethodSignatures: true
+
+    parallel:
+        jobSize: 20
+        maximumNumberOfProcesses: 32
+        minimumNumberOfJobsPerProcess: 2
