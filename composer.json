@@ -64,6 +64,12 @@
             "@test"
         ]
     },
+    "scripts-descriptions": {
+        "test" : "run PHPUnit tests",
+        "phpcsfixer" : "run PHP-CS-Fixer",
+        "larastan" : "run Larastan",
+        "run-all" : "run PHP-CS-Fixer & Larastan & PHPUnit tests"
+    },
     "extra": {
         "laravel": {
             "dont-discover": []
