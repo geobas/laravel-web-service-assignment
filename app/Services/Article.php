@@ -63,7 +63,7 @@ class Article implements ArticleServiceContract
 
             $response = $this->syncArticleService->create($article);
 
-            if (!$response) {
+            if (! $response) {
                 throw new ExternalServiceException('Article synchronization error.');
             }
 
@@ -88,7 +88,7 @@ class Article implements ArticleServiceContract
 
             $response = $this->syncArticleService->update($article);
 
-            if (!$response) {
+            if (! $response) {
                 throw new ExternalServiceException('Article synchronization error.');
             }
 
@@ -113,7 +113,7 @@ class Article implements ArticleServiceContract
 
             $response = $this->syncArticleService->delete($article);
 
-            if (!$response) {
+            if (! $response) {
                 throw new ExternalServiceException('Article synchronization error.');
             }
 

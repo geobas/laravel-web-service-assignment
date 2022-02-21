@@ -30,8 +30,8 @@ class ArticleTest extends TestCase
     public function get_all_articles()
     {
         $this->getJson('api/v1/articles')
-             ->assertStatus(Status::OK)
-             ->assertJsonStructure([
+            ->assertStatus(Status::OK)
+            ->assertJsonStructure([
                 'data' => [
                     [
                         'id',
@@ -43,7 +43,7 @@ class ArticleTest extends TestCase
                         'comments',
                     ],
                 ],
-             ]);
+            ]);
     }
 
     /**
@@ -52,8 +52,8 @@ class ArticleTest extends TestCase
     public function get_one_article()
     {
         $this->getJson('api/v1/articles/1')
-             ->assertStatus(Status::OK)
-             ->assertJsonStructure([
+            ->assertStatus(Status::OK)
+            ->assertJsonStructure([
                 'data' => [
                     'id',
                     'title',
@@ -63,7 +63,7 @@ class ArticleTest extends TestCase
                     'creation_date',
                     'comments',
                 ],
-             ]);
+            ]);
     }
 
     /**
@@ -72,12 +72,12 @@ class ArticleTest extends TestCase
     public function create_one_article()
     {
         $this->postJson('api/v1/articles', [
-                'title' => 'Nulla voluptatibus esse quibusdam id omnis.',
-                'content' => 'Fusce euismod ullamcorper mi, vel volutpat felis maximus in. Proin ornare pharetra convallis. Quisque ultricies libero eu eros tempus ornare quis quis nisi. Phasellus id ante a lorem pharetra egestas ullamcorper vitae tellus.',
-                'category' => 'General',
-             ])
-             ->assertStatus(Status::CREATED)
-             ->assertJsonStructure([
+            'title' => 'Nulla voluptatibus esse quibusdam id omnis.',
+            'content' => 'Fusce euismod ullamcorper mi, vel volutpat felis maximus in. Proin ornare pharetra convallis. Quisque ultricies libero eu eros tempus ornare quis quis nisi. Phasellus id ante a lorem pharetra egestas ullamcorper vitae tellus.',
+            'category' => 'General',
+        ])
+            ->assertStatus(Status::CREATED)
+            ->assertJsonStructure([
                 'data' => [
                     'id',
                     'title',
@@ -86,18 +86,18 @@ class ArticleTest extends TestCase
                     'uuid',
                     'creation_date',
                 ],
-             ])
-             ->assertJson([
+            ])
+            ->assertJson([
                 'data' => [
                     'title' => 'Nulla voluptatibus esse quibusdam id omnis.',
                     'content' => 'Fusce euismod ullamcorper mi, vel volutpat felis maximus in. Proin ornare pharetra convallis. Quisque ultricies libero eu eros tempus ornare quis quis nisi. Phasellus id ante a lorem pharetra egestas ullamcorper vitae tellus.',
                     'category' => 'General',
                 ],
-             ]);
+            ]);
 
         $this->postJson('api/v1/articles')
-             ->assertStatus(Status::BAD_REQUEST)
-             ->assertJson([
+            ->assertStatus(Status::BAD_REQUEST)
+            ->assertJson([
                 'errors' => [
                     'title' => [
                         'The title field is required.',
@@ -106,7 +106,7 @@ class ArticleTest extends TestCase
                         'content is required',
                     ],
                 ],
-             ]);
+            ]);
     }
 
     /**
@@ -115,12 +115,12 @@ class ArticleTest extends TestCase
     public function update_one_article()
     {
         $this->putJson('api/v1/articles/1', [
-                'title' => 'Lorem ipsum',
-                'content' => 'Occaecati voluptas ipsum nesciunt. Provident quo magnam similique fuga quibusdam. Consectetur aperiam ea quas ad est.',
-                'category' => 'Nature',
-             ])
-             ->assertStatus(Status::OK)
-             ->assertJsonStructure([
+            'title' => 'Lorem ipsum',
+            'content' => 'Occaecati voluptas ipsum nesciunt. Provident quo magnam similique fuga quibusdam. Consectetur aperiam ea quas ad est.',
+            'category' => 'Nature',
+        ])
+            ->assertStatus(Status::OK)
+            ->assertJsonStructure([
                 'data' => [
                     'id',
                     'title',
@@ -129,14 +129,14 @@ class ArticleTest extends TestCase
                     'uuid',
                     'creation_date',
                 ],
-             ])
-             ->assertJson([
+            ])
+            ->assertJson([
                 'data' => [
                     'title' => 'Lorem ipsum',
                     'content' => 'Occaecati voluptas ipsum nesciunt. Provident quo magnam similique fuga quibusdam. Consectetur aperiam ea quas ad est.',
                     'category' => 'Nature',
                 ],
-             ]);
+            ]);
     }
 
     /**
@@ -145,8 +145,8 @@ class ArticleTest extends TestCase
     public function delete_one_article()
     {
         $this->deleteJson('api/v1/articles/1')
-             ->assertStatus(Status::OK)
-             ->assertJsonStructure([
+            ->assertStatus(Status::OK)
+            ->assertJsonStructure([
                 'data' => [
                     'id',
                     'title',
@@ -155,6 +155,6 @@ class ArticleTest extends TestCase
                     'uuid',
                     'creation_date',
                 ],
-             ]);
+            ]);
     }
 }

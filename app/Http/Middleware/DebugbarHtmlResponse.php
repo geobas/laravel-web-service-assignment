@@ -24,9 +24,9 @@ class DebugbarHtmlResponse
         $response = $next($request);
 
         if (
-            $response instanceof JsonResponse &&
-            app()->bound('debugbar') &&
-            app('debugbar')->isEnabled()
+            $response instanceof JsonResponse
+            && app()->bound('debugbar')
+            && app('debugbar')->isEnabled()
         ) {
             $response->header('Content-Type', 'text/html');
         }

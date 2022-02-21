@@ -32,9 +32,9 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
     public function __construct()
     {
         $this->client = Http::fake()
-                            ->timeout(3)
-                            ->accept('application/vnd.api+json')
-                            ->withToken(config('services.external.token'));
+            ->timeout(3)
+            ->accept('application/vnd.api+json')
+            ->withToken(config('services.external.token'));
     }
 
     public function sendAll(): bool
@@ -43,7 +43,7 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
 
         Article::chunk(self::SIZE, function ($articles) use (&$failed) {
             $articles->each(function ($article) use (&$failed) {
-                if (!$this->create(ArticleResource::make($article))) {
+                if (! $this->create(ArticleResource::make($article))) {
                     $failed = true;
 
                     return false;
@@ -51,38 +51,38 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
             });
         });
 
-        return !$failed;
+        return ! $failed;
     }
 
     public function create(ArticleResource $article): bool
     {
         return $this->client
-                    ->post(config('services.external.base_url') . 'articles', [
-                        'type' => 'article',
-                        'attributes' => $this->buildAttributesPaylod($article),
-                    ])
-                    ->throw()
-                    ->successful();
+            ->post(config('services.external.base_url') . 'articles', [
+                'type' => 'article',
+                'attributes' => $this->buildAttributesPaylod($article),
+            ])
+            ->throw()
+            ->successful();
     }
 
     public function update(ArticleResource $article): bool
     {
         return $this->client
-                    ->put(config('services.external.base_url') . "articles/{$article->id}", [
-                        'id' => $article->id,
-                        'type' => 'article',
-                        'attributes' => $this->buildAttributesPaylod($article),
-                    ])
-                    ->throw()
-                    ->successful();
+            ->put(config('services.external.base_url') . "articles/{$article->id}", [
+                'id' => $article->id,
+                'type' => 'article',
+                'attributes' => $this->buildAttributesPaylod($article),
+            ])
+            ->throw()
+            ->successful();
     }
 
     public function delete(ArticleResource $article): bool
     {
         return $this->client
-                    ->delete(config('services.external.base_url') . "articles/{$article->id}")
-                    ->throw()
-                    ->successful();
+            ->delete(config('services.external.base_url') . "articles/{$article->id}")
+            ->throw()
+            ->successful();
     }
 
     /**

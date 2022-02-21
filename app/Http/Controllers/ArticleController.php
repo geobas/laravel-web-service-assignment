@@ -120,7 +120,7 @@ class ArticleController extends Controller
     {
         $response = $this->syncArticleService->sendAll();
 
-        if (!$response) {
+        if (! $response) {
             throw new ExternalServiceException('Article synchronization error.');
         }
 
