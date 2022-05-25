@@ -1,4 +1,4 @@
-## Technical test for a simple web service written in Laravel.
+## Technical test for a simple web service written in Laravel [![CI](https://github.com/geobas/laravel-web-service-assignment/actions/workflows/ci.yaml/badge.svg)](https://github.com/geobas/laravel-web-service-assignment/actions/workflows/ci.yaml)
 
 ### Description
 The goal of this assignment is to create a simple web service that will handle articles and their related comments, as well as send the articles to at least one external service.
