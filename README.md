@@ -7,8 +7,8 @@ The goal of this assignment is to create a simple web service that will handle a
 
 ### Set up
 ```
-1. git clone git@github.com:geobas/elearning_industry_assignment.git elearning_industry_assignment
-2. docker-compose up -d && docker exec -it elearning-industry-app bash
+1. git clone git@github.com:geobas/laravel-web-service-assignment.git
+2. docker-compose up -d && docker exec -it laravel-web-service-app bash
 3. composer install
 4. composer run-script post-root-package-install
 5. Modify the generated .env accordingly to .docker/mysql/.env

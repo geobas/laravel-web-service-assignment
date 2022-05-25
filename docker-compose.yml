@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
-    container_name: elearning-industry-app
+    container_name: laravel-web-service-app
     ports:
       - 80:80
     volumes:
@@ -13,7 +13,7 @@ services:
       - mysql
   mysql:
     image: mysql:8.0.26
-    container_name: elearning-industry-mysql
+    container_name: laravel-web-service-mysql
     restart: always
     ports:
       - 3306:3306
@@ -24,7 +24,7 @@ services:
       - ~/Workspaces/mysql/db:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin:5.1.1
-    container_name: elearning-industry-phpmyadmin
+    container_name: laravel-web-service-phpmyadmin
     restart: always
     ports:
       - 8080:80
