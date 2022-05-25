@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use DB;
-use Log;
 use Throwable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\Article as ArticleModel;
 use App\Http\Resources\Article as ArticleResource;
 use App\Contracts\Service\Article as ArticleServiceContract;

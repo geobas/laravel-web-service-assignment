@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Log;
 use Throwable;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use App\Helpers\HttpStatus as Status;
 use App\Http\Requests\Comment as CommentRequest;
 use App\Contracts\Repository\Comment as CommentRepositoryContract;

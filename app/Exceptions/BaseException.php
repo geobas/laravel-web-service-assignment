@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
-use Log;
 use Exception;
 use ReflectionClass;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Base exception to specify common functionality and methods.
