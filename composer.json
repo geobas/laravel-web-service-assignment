@@ -50,13 +50,13 @@
             "@php artisan key:generate --ansi"
         ],
         "test": [
-            "vendor/bin/phpunit tests/Feature"
+            "vendor/bin/phpunit -v tests/Feature"
         ],
         "phpcsfixer": [
-            "vendor/bin/php-cs-fixer fix"
+            "vendor/bin/php-cs-fixer fix --show-progress=dots -vvv"
         ],
         "larastan": [
-            "vendor/bin/phpstan analyse --memory-limit=2G"
+            "vendor/bin/phpstan analyse --memory-limit=2G -vvv"
         ],
         "run-all": [
             "@phpcsfixer",

@@ -24,7 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ArticleServiceContract::class, function () {
+        $this->app->singleton(ArticleServiceContract::class, function() {
             return new ArticleService(
                 new ArticleRepository(new ArticleModel),
                 new ArticleResource(collect()),
@@ -32,7 +32,7 @@ class RepositoryServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->singleton(CommentRepositoryContract::class, function () {
+        $this->app->singleton(CommentRepositoryContract::class, function() {
             return new CommentRepository(
                 new CommentModel,
                 new CommentResource(collect()),

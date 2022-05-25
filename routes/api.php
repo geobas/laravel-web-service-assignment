@@ -15,7 +15,7 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::group(['middleware' => ['debugbar'], 'prefix' => 'v1'], function () {
+Route::group(['middleware' => ['debugbar'], 'prefix' => 'v1'], function() {
     Route::apiResources([
         'articles' => ArticleController::class,
         'comments' => CommentController::class,

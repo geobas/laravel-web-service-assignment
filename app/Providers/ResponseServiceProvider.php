@@ -14,7 +14,7 @@ class ResponseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        response()->macro('api', function ($data, $status = Status::OK) {
+        response()->macro('api', function($data, $status = Status::OK) {
             return response()->json($data ?? [], $status, [], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
         });
     }

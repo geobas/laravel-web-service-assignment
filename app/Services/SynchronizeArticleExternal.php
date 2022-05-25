@@ -41,8 +41,8 @@ class SynchronizeArticleExternal implements SynchronizeArticleServiceContract
     {
         $failed = false;
 
-        Article::chunk(self::SIZE, function ($articles) use (&$failed) {
-            $articles->each(function ($article) use (&$failed) {
+        Article::chunk(self::SIZE, function($articles) use (&$failed) {
+            $articles->each(function($article) use (&$failed) {
                 if (! $this->create(ArticleResource::make($article))) {
                     $failed = true;
 

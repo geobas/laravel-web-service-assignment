@@ -40,6 +40,6 @@ class Article extends Model
     {
         parent::boot();
 
-        static::creating(fn ($model) => $model->uuid = Str::uuid()->toString());
+        static::creating(fn($model) => $model->uuid = Str::uuid()->toString());
     }
 }

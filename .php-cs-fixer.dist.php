@@ -10,6 +10,7 @@ $rules = [
         'operators' => [
             '=>' => 'single_space',
             '===' => 'align_single_space_minimal',
+            '&' => 'no_space',
         ],
     ],
     'braces' => true,
@@ -18,7 +19,8 @@ $rules = [
     ],
     'class_attributes_separation' => [
         'elements' => [
-            'const' => 'only_if_meta'
+            'const' => 'only_if_meta',
+            'method' => 'one',
         ],
     ],
     'ordered_imports' => [
@@ -71,6 +73,10 @@ $rules = [
         ],
     ],
     'new_with_braces' => false,
+    'function_declaration' => [
+        'closure_function_spacing' => 'none',
+    ],
+    'no_null_property_initialization' => false,
 ];
 
 $excludes = [
