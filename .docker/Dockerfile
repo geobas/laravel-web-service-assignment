@@ -13,10 +13,12 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     unzip \
+    && pecl install pcov \
     && docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install zip \
+    && docker-php-ext-enable pcov \
     && docker-php-source delete
 
 # Clear apt cache
