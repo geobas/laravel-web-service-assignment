@@ -17,7 +17,7 @@ The goal of this assignment is to create a simple web service that will handle a
 ```
 
 ### Postman collection
-* A collection of all endpoints is available [here](https://www.getpostman.com/collections/c16dcee27323e69c3695)
+* A collection of all endpoints is available [here](https://api.postman.com/collections/18571919-7528ebdc-7125-473b-8866-beeab031ac2a?access_key=PMAT-01GNZ86K9ENKRA9Y4H8MBYWD7P)
 * Create a new Environment and set a 'domain' variable with value http://localhost:8080
 
 ### Execute tests
