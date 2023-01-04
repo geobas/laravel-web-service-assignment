@@ -74,9 +74,13 @@ $rules = [
     ],
     'new_with_braces' => false,
     'function_declaration' => [
+        'closure_fn_spacing' => 'none',
         'closure_function_spacing' => 'none',
     ],
     'no_null_property_initialization' => false,
+    'global_namespace_import' => [
+        'import_classes' => null,
+    ],
 ];
 
 $excludes = [
