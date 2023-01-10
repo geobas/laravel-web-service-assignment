@@ -24,7 +24,7 @@ jobs:
     needs: setup
     steps:
       - name: ✅ Checkout
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
       - name: 🔧 Install Dependencies
         uses: ramsey/composer-install@v2
       - name: 🧽 Run linter
@@ -36,7 +36,7 @@ jobs:
     needs: setup
     steps:
       - name: ✅ Checkout
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
       - name: 🔧 Install Dependencies
         uses: ramsey/composer-install@v2
       - name: 🧐 Run analyzer
@@ -53,7 +53,7 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite
           coverage: pcov
       - name: ✅ Checkout
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
       - name: 🔧 Install Dependencies
         uses: ramsey/composer-install@v2
       - name: 🧪 Run tests
