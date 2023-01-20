@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: .docker/Dockerfile
     container_name: laravel-web-service-app
+    image: laravel-web-service-app:latest
     ports:
       - 80:80
     volumes:
